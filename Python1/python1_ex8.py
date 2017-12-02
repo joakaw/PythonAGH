@@ -15,11 +15,9 @@ def sortNumbers(numbers):
         for i in range(len(numbers) - 1):
             if (sortedNumbers[i] > sortedNumbers[i+1]):
                 sortedNumbers[i], sortedNumbers[i+1] = sortedNumbers[i+1] , sortedNumbers[i]
-
-    print("Sorted numbers: ",sortedNumbers)
-
+    return sortedNumbers
 
 unsortedNumbers = getRandomNumbers(N)
 print("Unsorted numbers ",unsortedNumbers)
 print("Expected sorted numbers: ",sorted(unsortedNumbers))
-sortNumbers(unsortedNumbers)
+print("Sorted numbers: ",sortNumbers(unsortedNumbers))

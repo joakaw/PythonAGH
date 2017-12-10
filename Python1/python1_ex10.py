@@ -1,14 +1,4 @@
-
-
-def change_word(file, dest_file):
-    dictionary = {' i ': ' oraz ', ' oraz ': ' i ', ' nigdy ': ' prawie nigdy ', ' dlaczego ': ' czemu '}
-    for s in file:
-        for i in dictionary.keys():
-            dest_file.write(s.replace(i, dictionary.get(i)))
-            print("looking for: ",i )
-        print("looking for: ", s)
-
-    dest_file.close()
+dictionary = {' i ': ' oraz ', ' oraz ': ' i ', ' nigdy ': ' prawie nigdy ', ' dlaczego ': ' czemu '}
 
 
 def read_from_file(file_name):
@@ -18,11 +8,23 @@ def read_from_file(file_name):
     return text
 
 
+def change_word(word, src_file_name,dst_file_name):
+    src_file = open(src_file_name, 'r').readlines()
+    dst_file = open(dst_file_name, 'w')
+    for s in src_file:
+        dst_file.write(s.replace(word, dictionary.get(word)))
+        dst_file.close()
+
+
+def change_text(file_name):
+    words_to_delete = dictionary.keys()
+
+    for word in words_to_delete:
+        change_word(word, file_name,file_name)
+
+
 file_to_change_word = 'testFile2.txt'
+
 print("before:", read_from_file(file_to_change_word))
-
-source_file = open(file_to_change_word, 'r').readlines()
-destination_file = open(file_to_change_word, 'w')
-
-change_word(source_file, destination_file)
+change_text(file_to_change_word)
 print("after: ", read_from_file(file_to_change_word))

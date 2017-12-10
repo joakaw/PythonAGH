@@ -3,7 +3,6 @@ import threading
 import random
 import time
 
-
 class Philosopher(threading.Thread):
     running = True
 
@@ -30,6 +29,8 @@ class Philosopher(threading.Thread):
             fork1.release()                                                     #if impossible to block two forks, release first one
             print('%s swaps forks' %self.name)
             fork1, fork2 = fork2, fork1
+
+            #to achieve deadlock comment three lines above - relate to fork releasing
         else:
             return
 

@@ -2,12 +2,6 @@
 file_to_delete_word = 'testFile.txt'
 
 
-def delete_word(word, file, dest_file):
-    for s in file:
-        dest_file.write(s.replace(word, ""))
-        dest_file.close()
-
-
 def read_from_file(file_name):
     file = open(file_name, 'r')
     text = file.read()
@@ -15,10 +9,20 @@ def read_from_file(file_name):
     return text
 
 
+def delete_word(word, src_file_name,dst_file_name):
+    src_file = open(src_file_name, 'r').readlines()
+    dst_file = open(dst_file_name, 'w')
+    for s in src_file:
+        dst_file.write(s.replace(word, " "))
+        dst_file.close()
+
+def clear_text(file_name):
+    words_to_delete = [" sie ", " i ", " oraz ", " nigdy ", " dlaczego "]
+
+    for word in words_to_delete:
+        delete_word(word, file_name,file_name)
+
+
 print("before:", read_from_file(file_to_delete_word))
-
-source_file = open(file_to_delete_word, 'r').readlines()
-destination_file = open(file_to_delete_word, 'w')
-
-delete_word("slowo ", source_file,destination_file)
+clear_text(file_to_delete_word)
 print("after: ", read_from_file(file_to_delete_word))
